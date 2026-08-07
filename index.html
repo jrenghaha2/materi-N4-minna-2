@@ -3,194 +3,358 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>N4 — Bunpou & Kotoba</title>
+<title>JLPT N4 — Bunpou & Kotoba</title>
 <style>
 :root{
-  --bg:#FFFFFF; --bg2:#F7F7F5; --card:#FFFFFF; --line:#E9E9E7;
-  --text:#191918; --text2:#787774; --accent:#2783DE; --accent-soft:#E8F2FC;
-  --green:#448361; --green-soft:#EDF3EC; --orange:#D9730D; --orange-soft:#FAEBDD;
-  --red:#D44C47; --red-soft:#FDEBEC; --purple:#9065B0; --purple-soft:#F6F3F9;
-  --shadow:0 1px 2px rgba(15,15,15,.04), 0 4px 14px rgba(15,15,15,.06);
+  --bg:#FAF7F1; --bg2:#F2ECDF; --card:#FFFFFF; --line:#E9E1CF;
+  --text:#26242B; --text2:#71695A;
+  --accent:#3E4FA8; --sakura:#D97A93;
+  --accent-soft:#ECEDF9;
+  --green:#4C8055; --green-soft:#E9F2E6;
+  --orange:#C96A1F; --orange-soft:#FBEDDC;
+  --red:#C94F47; --red-soft:#FAE9E7;
+  --purple:#8A5FA8; --purple-soft:#F4EFF8;
+  --rt:#5870CE;
+  --grad:linear-gradient(135deg,#39468F 0%,#4B3D92 55%,#6C3F83 100%);
+  --hero-grad:linear-gradient(125deg,#2E3A8C 0%,#4B3D92 52%,#7C3F74 100%);
+  --shadow:0 1px 2px rgba(70,58,32,.05), 0 6px 20px rgba(70,58,32,.07);
+  --shadow-lg:0 2px 4px rgba(70,58,32,.07), 0 16px 38px rgba(70,58,32,.13);
+  --ring:0 0 0 3px rgba(62,79,168,.20);
+  /* structural theme values (overridden in dark below) */
+  --body-bg:
+    radial-gradient(1100px 480px at 50% -200px, rgba(62,79,168,.08), transparent 62%),
+    radial-gradient(rgba(62,79,168,.055) 1px, transparent 1.6px),
+    var(--bg);
+  --tab-on-bg:#FFFFFF;
+  --tab-on-shadow:0 1px 4px rgba(60,48,20,.14);
+  --switch-track-off:#DCD5C4;
+  --switch-knob:#FFFFFF;
+  --hero-btn-bg:rgba(255,255,255,.14);
+  --stat-bg:rgba(255,255,255,.13);
 }
 @media (prefers-color-scheme: dark){
   :root{
-    --bg:#191919; --bg2:#202020; --card:#232323; --line:#333331;
-    --text:#EDEDEC; --text2:#9B9B97; --accent:#529CCA; --accent-soft:#1F3247;
-    --green:#6FBF8E; --green-soft:#1E2B23; --orange:#E5984C; --orange-soft:#332518;
-    --red:#E06C67; --red-soft:#362020; --purple:#B58BD4; --purple-soft:#2A2333;
-    --shadow:0 1px 2px rgba(0,0,0,.3), 0 4px 14px rgba(0,0,0,.35);
+    --bg:#12141C; --bg2:#191C27; --card:#1F2331; --line:#31374B;
+    --text:#ECEDF2; --text2:#9BA1B6;
+    --accent:#96A6EE; --sakura:#E59AAF;
+    --accent-soft:#2A3050;
+    --green:#86C796; --green-soft:#223129;
+    --orange:#E09A55; --orange-soft:#362818;
+    --red:#E07B73; --red-soft:#3B2327;
+    --purple:#BE93D8; --purple-soft:#2E2739;
+    --rt:#A3B5F2;
+    --grad:linear-gradient(135deg,#2A3560 0%,#3B2F63 55%,#522F66 100%);
+    --hero-grad:linear-gradient(125deg,#232B66 0%,#3A2F6B 52%,#5C2F57 100%);
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 6px 20px rgba(0,0,0,.42);
+    --shadow-lg:0 2px 4px rgba(0,0,0,.42), 0 16px 38px rgba(0,0,0,.5);
+    --ring:0 0 0 3px rgba(150,166,238,.28);
+    --body-bg:
+      radial-gradient(1100px 480px at 50% -200px, rgba(150,166,238,.09), transparent 62%),
+      radial-gradient(rgba(150,166,238,.05) 1px, transparent 1.6px),
+      var(--bg);
+    --tab-on-bg:#2B3145;
+    --tab-on-shadow:0 1px 4px rgba(0,0,0,.5);
+    --switch-track-off:#3C4358;
+    --switch-knob:#E9EBF3;
+    --hero-btn-bg:rgba(255,255,255,.10);
+    --stat-bg:rgba(255,255,255,.10);
   }
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{-webkit-text-size-adjust:100%}
 body{
-  background:var(--bg2); color:var(--text);
+  background:var(--body-bg);
+  background-size:auto, 24px 24px, auto;
+  color:var(--text);
   font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Hiragino Kaku Gothic ProN","Hiragino Sans","Yu Gothic UI","Meiryo","Noto Sans JP","Noto Sans CJK JP",sans-serif;
   line-height:1.6;
 }
-.wrap{max-width:960px;margin:0 auto;padding:28px 20px 60px}
+::selection{background:var(--accent-soft)}
+.wrap{max-width:980px;margin:0 auto;padding:28px 20px 64px}
 button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
+button:focus-visible,input:focus-visible{outline:none;box-shadow:var(--ring)}
+.kj-card:focus-visible{outline:none;box-shadow:var(--ring)}
+@keyframes rise{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:none}}
 
 /* ===== Home ===== */
-.hero{padding:26px 4px 18px}
-.hero .kicker{font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
-.hero h1{font-size:clamp(26px,4.6vw,38px);line-height:1.2;margin:6px 0 8px;letter-spacing:-.01em}
-.hero p.sub{color:var(--text2);max-width:620px;font-size:15px}
-.stats{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
-.stat{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 16px;box-shadow:var(--shadow);display:flex;align-items:baseline;gap:8px}
-.stat b{font-size:20px;color:var(--accent)}
-.stat span{font-size:12.5px;color:var(--text2)}
-.searchbar{margin:22px 0 14px;position:relative}
-.searchbar svg{position:absolute;left:13px;top:50%;transform:translateY(-50%);width:16px;height:16px;stroke:var(--text2)}
+.hero{
+  position:relative;overflow:hidden;border-radius:22px;margin:4px 0 6px;
+  padding:36px 32px 30px;background:var(--hero-grad);color:#fff;box-shadow:var(--shadow-lg);
+}
+.hero::before{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:
+    radial-gradient(560px 240px at 90% -10%, rgba(255,255,255,.18), transparent 60%),
+    radial-gradient(460px 240px at -6% 116%, rgba(217,122,147,.38), transparent 62%);
+}
+.hero::after{
+  content:"桜";position:absolute;right:18px;bottom:-46px;pointer-events:none;
+  font-size:170px;font-weight:700;line-height:1;color:rgba(255,255,255,.11);
+  font-family:"Hiragino Mincho ProN","Yu Mincho","Noto Serif CJK JP","Noto Serif JP",serif;
+  transform:rotate(-7deg);
+}
+.hero>*{position:relative;z-index:1}
+.hero .kicker{font-size:12.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#F2C6D3}
+.hero h1{font-size:clamp(28px,4.8vw,40px);line-height:1.15;margin:8px 0 10px;letter-spacing:-.02em;font-weight:800;color:#fff;text-shadow:0 2px 10px rgba(20,16,50,.35)}
+.hero p.sub{color:rgba(255,255,255,.82);max-width:620px;font-size:15px}
+.hero p.sub b{color:#fff}
+.stats{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+.stat{
+  background:var(--stat-bg);border:1px solid rgba(255,255,255,.22);border-radius:12px;
+  padding:10px 16px;display:flex;align-items:baseline;gap:8px;
+}
+.stat b{font-size:20px;color:#fff}
+.stat span{font-size:12.5px;color:rgba(255,255,255,.82)}
+.hero .btn{
+  background:var(--hero-btn-bg);border-color:rgba(255,255,255,.30);color:#fff;box-shadow:none;
+}
+.hero .btn:hover{background:rgba(255,255,255,.24);border-color:rgba(255,255,255,.55);color:#fff}
+/* backdrop-filter dipakai hemat, hanya bila didukung; fallback = latar rgba di atas */
+@supports ((backdrop-filter: blur(8px)) or (-webkit-backdrop-filter: blur(8px))){
+  .stat{backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+  .hero .btn{backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+  .kj-backdrop{backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px)}
+}
+.searchbar{margin:24px 0 16px;position:relative}
+.searchbar svg{position:absolute;left:16px;top:50%;transform:translateY(-50%);width:17px;height:17px;stroke:var(--text2)}
 .searchbar input{
-  width:100%;padding:11px 14px 11px 38px;border-radius:10px;border:1px solid var(--line);
+  width:100%;padding:13px 16px 13px 44px;border-radius:999px;border:1px solid var(--line);
   background:var(--card);color:var(--text);font:inherit;font-size:15px;outline:none;box-shadow:var(--shadow);
+  transition:border-color .15s ease, box-shadow .15s ease;
 }
-.searchbar input:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(255px,1fr));gap:12px}
+.searchbar input::placeholder{color:var(--text2);opacity:.85}
+.searchbar input:focus{border-color:var(--accent);box-shadow:var(--shadow), var(--ring)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(255px,1fr));gap:14px}
 .card{
-  text-align:left;background:var(--card);border:1px solid var(--line);border-radius:12px;
-  padding:16px 16px 14px;box-shadow:var(--shadow);transition:transform .12s ease, border-color .12s ease;
-  display:flex;flex-direction:column;gap:8px;position:relative;
+  text-align:left;background:var(--card);border:1px solid var(--line);border-radius:14px;
+  padding:18px 18px 16px;box-shadow:var(--shadow);
+  transition:transform .16s ease, border-color .16s ease, box-shadow .16s ease;
+  display:flex;flex-direction:column;gap:9px;position:relative;overflow:hidden;
 }
-.card:hover{transform:translateY(-2px);border-color:var(--accent)}
-.card .hari{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
-.card .done-badge{position:absolute;top:12px;right:12px;font-size:11.5px;font-weight:600;color:var(--green);background:var(--green-soft);border-radius:99px;padding:2px 9px}
-.card h3{font-size:15px;line-height:1.45;font-weight:600}
+/* animasi masuk dibatasi hanya 12 kartu pertama demi performa */
+.grid>.card:nth-child(-n+12){animation:rise .3s ease both}
+.card::before{
+  content:"";position:absolute;top:0;left:0;right:0;height:4px;
+  background:linear-gradient(90deg,var(--accent),var(--purple),var(--sakura));
+  opacity:0;transition:opacity .18s ease;
+}
+.grid>.card:nth-child(2){animation-delay:.04s}
+.grid>.card:nth-child(3){animation-delay:.08s}
+.grid>.card:nth-child(4){animation-delay:.12s}
+.grid>.card:nth-child(5){animation-delay:.16s}
+.grid>.card:nth-child(6){animation-delay:.20s}
+.grid>.card:nth-child(7){animation-delay:.24s}
+.grid>.card:nth-child(8){animation-delay:.28s}
+.card:hover{transform:translateY(-3px);border-color:rgba(62,79,168,.45);box-shadow:var(--shadow-lg)}
+.card:hover::before{opacity:1}
+.card .hari{font-size:12px;font-weight:800;letter-spacing:.10em;text-transform:uppercase;color:var(--accent)}
+.card .done-badge{position:absolute;top:12px;right:12px;font-size:11.5px;font-weight:700;color:var(--green);background:var(--green-soft);border:1px solid rgba(76,128,85,.28);border-radius:99px;padding:2px 10px}
+.card h3{font-size:15.5px;line-height:1.45;font-weight:700;letter-spacing:-.005em}
 .card .kt{font-size:13px;color:var(--text2);display:flex;gap:6px;align-items:baseline}
-.card .kt .tag{flex:none;font-size:10.5px;font-weight:700;letter-spacing:.06em;color:var(--purple);background:var(--purple-soft);border-radius:5px;padding:1px 6px;text-transform:uppercase}
+.card .kt .tag{flex:none;font-size:10.5px;font-weight:800;letter-spacing:.06em;color:var(--purple);background:var(--purple-soft);border-radius:5px;padding:2px 7px;text-transform:uppercase}
 .card .kt.b .tag{color:var(--accent);background:var(--accent-soft)}
-.empty{padding:40px 10px;text-align:center;color:var(--text2)}
+.empty{padding:44px 12px;text-align:center;color:var(--text2)}
 
-/* ===== Bab view ===== */
-.topbar{display:flex;align-items:center;gap:10px;margin-bottom:16px;flex-wrap:wrap}
+/* ===== Shared ===== */
+.topbar{display:flex;align-items:center;gap:10px;margin-bottom:18px;flex-wrap:wrap}
 .btn{
   display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:var(--card);
-  border-radius:8px;padding:7px 13px;font-size:13.5px;font-weight:500;box-shadow:var(--shadow);
+  border-radius:10px;padding:8px 14px;font-size:13.5px;font-weight:600;box-shadow:var(--shadow);
+  transition:transform .14s ease, border-color .14s ease, color .14s ease, background .14s ease;
 }
-.btn:hover{border-color:var(--accent);color:var(--accent)}
-.btn.done-on{border-color:var(--green);color:var(--green);background:var(--green-soft)}
+.btn:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-1px)}
+.btn.done-on{border-color:rgba(76,128,85,.4);color:var(--green);background:var(--green-soft)}
+.mini{font-size:12.5px;font-weight:600;color:var(--text2);border:1px solid var(--line);border-radius:99px;padding:5px 13px;background:var(--card);box-shadow:var(--shadow);transition:border-color .14s ease, color .14s ease}
+.mini:hover{color:var(--accent);border-color:var(--accent)}
 .spacer{flex:1}
-.bab-head{padding:4px 2px 14px}
-.bab-head .hari{font-size:12.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
-.bab-head h2{font-size:clamp(21px,3.6vw,28px);line-height:1.3;margin-top:2px}
-.tabs{display:flex;gap:6px;border-bottom:1px solid var(--line);margin-bottom:18px}
-.tab{
-  padding:9px 16px;font-size:14.5px;font-weight:600;color:var(--text2);
-  border-bottom:2px solid transparent;margin-bottom:-1px;border-radius:6px 6px 0 0;
-}
-.tab:hover{background:var(--bg);color:var(--text)}
-.tab.on{color:var(--accent);border-bottom-color:var(--accent)}
+
+/* ===== Bab view ===== */
+.bab-head{padding:4px 2px 16px}
+.bab-head .hari{font-size:12.5px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+.bab-head h2{font-size:clamp(23px,3.8vw,31px);line-height:1.25;margin-top:3px;letter-spacing:-.015em;font-weight:800}
+.tabs{display:inline-flex;gap:4px;background:var(--bg2);border:1px solid var(--line);border-radius:999px;padding:4px;margin-bottom:20px}
+.tab{padding:8px 18px;font-size:14px;font-weight:700;color:var(--text2);border-radius:999px;transition:color .14s ease, background .14s ease, box-shadow .14s ease}
+.tab:hover{color:var(--text)}
+.tab.on{background:var(--tab-on-bg);color:var(--accent);box-shadow:var(--tab-on-shadow)}
 .toolrow{display:flex;align-items:center;gap:10px;margin-bottom:14px;flex-wrap:wrap}
-.toolrow .mini{font-size:12.5px;color:var(--text2);border:1px solid var(--line);border-radius:99px;padding:4px 12px;background:var(--card)}
-.toolrow .mini:hover{color:var(--accent);border-color:var(--accent)}
 
 /* grammar point */
-.gp{background:var(--card);border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow);margin-bottom:12px;overflow:hidden}
-.gp-head{width:100%;display:flex;align-items:center;gap:10px;padding:14px 16px;text-align:left}
-.gp-head:hover{background:var(--bg2)}
-.gp-head .pat{font-size:16px;font-weight:700;line-height:1.45}
-.gp-head .arti{flex:none;font-size:12px;font-weight:600;color:var(--accent);background:var(--accent-soft);border-radius:99px;padding:3px 11px;white-space:nowrap}
-.gp-head .chev{flex:none;margin-left:auto;color:var(--text2);transition:transform .15s ease;font-size:12px}
-.gp.open .gp-head .chev{transform:rotate(90deg)}
-.gp-body{display:none;padding:2px 18px 16px;border-top:1px dashed var(--line)}
-.gp.open .gp-body{display:block}
-.gp-body .note{font-size:13.5px;color:var(--text2);background:var(--bg2);border-radius:8px;padding:9px 12px;margin:12px 0 4px}
-.gp-body .warn{font-size:13.5px;color:var(--orange);background:var(--orange-soft);border-radius:8px;padding:9px 12px;margin:12px 0 4px}
-.exs{list-style:none;margin-top:10px}
-.exs li{
-  font-size:15.5px;padding:7px 0 7px 14px;border-left:3px solid var(--accent-soft);margin:6px 0;line-height:1.75;
+.gp{
+  background:var(--card);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);
+  margin-bottom:12px;overflow:hidden;transition:border-color .15s ease, box-shadow .15s ease;
+  animation:rise .3s ease both;
 }
-.exs li:hover{border-left-color:var(--accent)}
+.gp:hover{border-color:rgba(62,79,168,.35)}
+.gp.open{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent), var(--shadow)}
+.gp-head{width:100%;display:flex;align-items:center;gap:10px;padding:15px 18px;text-align:left}
+.gp-head:hover{background:var(--accent-soft)}
+.gp.open .gp-head{background:var(--accent-soft)}
+.gp-head .pat{font-size:16.5px;font-weight:700;line-height:1.45}
+.gp-head .arti{flex:none;font-size:12px;font-weight:700;color:var(--accent);background:var(--accent-soft);border-radius:99px;padding:3px 11px;white-space:nowrap}
+.gp.open .gp-head .arti{background:var(--card)}
+.gp-head .chev{flex:none;margin-left:auto;color:var(--text2);transition:transform .18s ease, color .18s ease;font-size:11px}
+.gp.open .gp-head .chev{transform:rotate(90deg);color:var(--accent)}
+.gp-body{display:none;padding:4px 20px 18px;border-top:1px dashed var(--line)}
+.gp.open .gp-body{display:block}
+.gp-body .rumus{background:var(--accent-soft);border:1px dashed rgba(62,79,168,.45);padding:10px 13px;border-radius:10px;font-size:13.5px;line-height:1.7;margin:12px 0 4px}
+.gp-body .note{font-size:13.5px;color:var(--text2);background:var(--bg2);border-radius:10px;padding:10px 13px;margin:10px 0 4px}
+.gp-body .warn{font-size:13.5px;color:var(--orange);background:var(--orange-soft);border-radius:10px;padding:10px 13px;margin:10px 0 4px}
+.exs{list-style:none;margin-top:12px}
+.exs li{
+  font-size:15.5px;padding:8px 12px 8px 15px;border-left:3px solid var(--accent-soft);margin:7px 0;line-height:1.75;
+  border-radius:0 8px 8px 0;transition:border-color .15s ease, background .15s ease;
+}
+.exs li:hover{border-left-color:var(--accent);background:var(--accent-soft)}
 
 /* kotoba */
 .kt-head{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:6px}
-.kt-head .theme{font-size:17px;font-weight:700}
+.kt-head .theme{font-size:18px;font-weight:800;letter-spacing:-.01em}
 .kt-head .sub{font-size:13px;color:var(--text2)}
-.switch{display:inline-flex;align-items:center;gap:8px;font-size:13px;color:var(--text2);border:1px solid var(--line);background:var(--card);border-radius:99px;padding:5px 13px;margin-left:auto}
+.switch{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--text2);border:1px solid var(--line);background:var(--card);border-radius:99px;padding:6px 14px;margin-left:auto;box-shadow:var(--shadow);transition:border-color .14s ease, color .14s ease}
 .switch:hover{border-color:var(--accent);color:var(--accent)}
-.switch .dot{width:26px;height:15px;border-radius:99px;background:var(--line);position:relative;transition:background .15s}
-.switch .dot::after{content:"";position:absolute;top:2px;left:2px;width:11px;height:11px;border-radius:50%;background:var(--card);transition:left .15s}
+.switch .dot{width:26px;height:15px;border-radius:99px;background:var(--switch-track-off);position:relative;transition:background .15s}
+.switch .dot::after{content:"";position:absolute;top:2px;left:2px;width:11px;height:11px;border-radius:50%;background:var(--switch-knob);box-shadow:0 1px 2px rgba(0,0,0,.22);transition:left .15s}
 .switch.on{color:var(--accent);border-color:var(--accent)}
 .switch.on .dot{background:var(--accent)}
 .switch.on .dot::after{left:13px}
 .hint{font-size:12.5px;color:var(--text2);margin:2px 0 10px}
-.words{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:10px;margin-top:8px}
-.word{background:var(--card);border:1px solid var(--line);border-radius:11px;padding:12px 14px;box-shadow:var(--shadow)}
+.words{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;margin-top:8px}
+.word{
+  background:var(--card);border:1px solid var(--line);border-radius:13px;padding:14px 16px;box-shadow:var(--shadow);
+  transition:transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+}
+.words>.word:nth-child(-n+12){animation:rise .3s ease both}
+.words>.word:nth-child(2){animation-delay:.03s}
+.words>.word:nth-child(3){animation-delay:.06s}
+.words>.word:nth-child(4){animation-delay:.09s}
+.words>.word:nth-child(5){animation-delay:.12s}
+.words>.word:nth-child(6){animation-delay:.15s}
+.word:hover{transform:translateY(-2px);box-shadow:var(--shadow-lg);border-color:rgba(138,95,168,.4)}
 .word .w-line{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
-.word .w{font-size:17px;font-weight:700}
-.word .k{font-size:13px;color:var(--text2)}
-.word .m{font-size:14px;color:var(--green);font-weight:600;margin-top:2px}
-.word .ex{font-size:13px;color:var(--text2);margin-top:5px;border-top:1px dashed var(--line);padding-top:5px;line-height:1.7}
+.word .w{font-size:18px;font-weight:800}
+.word .k{font-size:12.5px;color:var(--text2)}
+.word .m{font-size:14px;color:var(--green);font-weight:700;margin-top:2px}
+.word .ex{font-size:13px;color:var(--text2);margin-top:6px;border-top:1px dashed var(--line);padding-top:6px;line-height:1.7}
 .word.veiled{cursor:pointer}
-.word.veiled .m,.word.veiled .ex{filter:blur(6px);user-select:none;transition:filter .15s}
+.word.veiled .m,.word.veiled .ex{filter:blur(6px);user-select:none;transition:filter .18s ease}
 .word.veiled.shown .m,.word.veiled.shown .ex{filter:none}
-.kt-none{background:var(--card);border:1px dashed var(--line);border-radius:12px;padding:34px 20px;text-align:center;color:var(--text2);font-size:14px}
+.kt-none{background:var(--card);border:1px dashed var(--line);border-radius:14px;padding:36px 22px;text-align:center;color:var(--text2);font-size:14px}
 .kt-none b{display:block;font-size:15px;color:var(--text);margin-bottom:4px}
 
 /* ===== Kanji flashcard ===== */
 .kj-toprow{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:6px}
 .kj-hint{font-size:12.5px;color:var(--text2);margin:2px 0 14px}
-.kj-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;margin-top:6px}
-.kj-card{position:relative;aspect-ratio:1/1;cursor:pointer;perspective:1200px}
-.kj-inner{position:relative;width:100%;height:100%;transition:transform .5s cubic-bezier(.4,.2,.2,1);transform-style:preserve-3d}
+.kj-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px;margin-top:6px}
+.kj-card{position:relative;aspect-ratio:1/1;cursor:pointer;perspective:1200px;transition:transform .16s ease}
+/* 104 kartu: animasi masuk hanya untuk 12 kartu pertama */
+.kj-grid>.kj-card:nth-child(-n+12){animation:rise .3s ease both}
+.kj-grid>.kj-card:nth-child(2){animation-delay:.03s}
+.kj-grid>.kj-card:nth-child(3){animation-delay:.06s}
+.kj-grid>.kj-card:nth-child(4){animation-delay:.09s}
+.kj-grid>.kj-card:nth-child(5){animation-delay:.12s}
+.kj-grid>.kj-card:nth-child(6){animation-delay:.15s}
+.kj-grid>.kj-card:nth-child(7){animation-delay:.18s}
+.kj-grid>.kj-card:nth-child(8){animation-delay:.21s}
+.kj-card:hover{transform:translateY(-3px)}
+.kj-inner{position:relative;width:100%;height:100%;transition:transform .55s cubic-bezier(.4,.2,.2,1);transform-style:preserve-3d}
 .kj-card.flip .kj-inner{transform:rotateY(180deg)}
-.kj-face{position:absolute;inset:0;border-radius:12px;border:1px solid var(--line);background:var(--card);box-shadow:var(--shadow);backface-visibility:hidden;-webkit-backface-visibility:hidden;display:flex;flex-direction:column;padding:10px;overflow:hidden}
-.kj-front{align-items:center;justify-content:center;gap:4px;text-align:center}
-.kj-front .kj-no{position:absolute;top:8px;left:10px;font-size:10.5px;color:var(--text2);font-weight:600}
-.kj-front .kj-ch{font-size:42px;font-weight:700;line-height:1}
-.kj-front .kj-tap{font-size:10px;color:var(--text2);margin-top:4px}
+.kj-face{
+  position:absolute;inset:0;border-radius:16px;border:1px solid var(--line);background:var(--card);
+  box-shadow:var(--shadow);backface-visibility:hidden;-webkit-backface-visibility:hidden;
+  display:flex;flex-direction:column;padding:10px;overflow:hidden;
+}
+.kj-front{align-items:center;justify-content:center;gap:4px;text-align:center;background:var(--grad);border:none;color:#fff}
+.kj-front::before{
+  content:"";position:absolute;inset:0;pointer-events:none;border-radius:16px;
+  background:radial-gradient(circle at 82% 10%, rgba(255,255,255,.22), transparent 55%);
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.14);
+}
+.kj-front .kj-no{position:absolute;top:8px;left:10px;font-size:10.5px;color:rgba(255,255,255,.65);font-weight:700}
+.kj-front .kj-ch{font-size:46px;font-weight:800;line-height:1;text-shadow:0 2px 8px rgba(15,10,40,.4)}
+.kj-front .kj-tap{font-size:10px;color:rgba(255,255,255,.68);margin-top:4px}
 .kj-back{transform:rotateY(180deg);overflow-y:auto;text-align:left;gap:5px}
-.kj-back .kj-ch2{font-size:19px;font-weight:700;display:flex;align-items:baseline;gap:7px;flex-wrap:wrap}
-.kj-back .kj-baca{font-size:11.5px;color:var(--accent);font-weight:600}
+.kj-back .kj-ch2{font-size:19px;font-weight:800;display:flex;align-items:baseline;gap:7px;flex-wrap:wrap}
+.kj-back .kj-baca{font-size:11.5px;color:var(--accent);font-weight:700}
 .kj-back .kj-kata{list-style:none;font-size:11px;color:var(--text2);line-height:1.55}
 .kj-back .kj-kalimat{font-size:10.5px;color:var(--text2);border-top:1px dashed var(--line);margin-top:2px;padding-top:4px;line-height:1.5}
 .kj-back .kj-kalimat .jp{color:var(--text);display:block;margin-bottom:2px}
+.kj-back::-webkit-scrollbar{width:6px}
+.kj-back::-webkit-scrollbar-thumb{background:var(--line);border-radius:6px}
 
 /* ===== Pop up detail kanji ===== */
 .kj-modal{position:fixed;inset:0;z-index:1000;display:flex;align-items:center;justify-content:center;padding:18px}
-.kj-backdrop{position:absolute;inset:0;background:rgba(15,15,15,.55)}
-.kj-dialog{position:relative;width:100%;max-width:560px;max-height:min(88vh,720px);display:flex;flex-direction:column;background:var(--card);border:1px solid var(--line);border-radius:16px;box-shadow:0 12px 48px rgba(0,0,0,.28);overflow:hidden;animation:kjpop .16s ease}
-@keyframes kjpop{from{transform:translateY(10px) scale(.97);opacity:0}to{transform:none;opacity:1}}
-.kj-close{position:absolute;top:10px;right:10px;z-index:2;width:36px;height:36px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:15px;cursor:pointer;color:var(--text2);background:var(--bg2);border:1px solid var(--line)}
-.kj-close:hover{color:#e03e3e;border-color:#e03e3e}
-.kj-dialog-body{overflow-y:auto;padding:22px 22px 20px}
-.kjm-head{display:flex;align-items:center;gap:16px;margin-bottom:14px;padding-right:40px}
-.kjm-ch{font-size:56px;font-weight:700;line-height:1;background:var(--accent-soft);border-radius:14px;padding:14px 18px}
+.kj-backdrop{position:absolute;inset:0;background:rgba(18,16,30,.6)}
+.kj-dialog{
+  position:relative;width:100%;max-width:560px;max-height:min(88vh,720px);display:flex;flex-direction:column;
+  background:var(--card);border:1px solid var(--line);border-radius:20px;
+  box-shadow:0 18px 60px rgba(10,8,25,.35);overflow:hidden;animation:kjpop .18s ease;
+}
+@keyframes kjpop{from{transform:translateY(12px) scale(.97);opacity:0}to{transform:none;opacity:1}}
+.kj-close{position:absolute;top:12px;right:12px;z-index:2;width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:15px;cursor:pointer;color:var(--text2);background:var(--bg2);border:1px solid var(--line);transition:color .14s ease, border-color .14s ease}
+.kj-close:hover{color:var(--red);border-color:var(--red)}
+.kj-dialog-body{overflow-y:auto;padding:24px 24px 22px}
+.kjm-head{display:flex;align-items:center;gap:16px;margin-bottom:16px;padding-right:40px}
+.kjm-ch{font-size:52px;font-weight:800;line-height:1;background:var(--grad);color:#fff;border-radius:16px;padding:16px 20px;box-shadow:var(--shadow-lg);text-shadow:0 2px 8px rgba(15,10,40,.35)}
 .kjm-headinfo{display:flex;flex-direction:column;gap:3px}
-.kjm-no{font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--text2)}
-.kjm-baca{font-size:15px;font-weight:600;color:var(--accent)}
+.kjm-no{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--text2)}
+.kjm-baca{font-size:15px;font-weight:700;color:var(--accent)}
 .kjm-yomi{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:4px 0 6px}
-.kjm-yomibox{border:1px solid var(--line);border-radius:10px;padding:9px 12px;background:var(--bg2)}
-.kjm-yomibox .lbl{display:block;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin-bottom:2px}
+.kjm-yomibox{border:1px solid var(--line);border-radius:12px;padding:10px 13px;background:var(--bg2)}
+.kjm-yomibox .lbl{display:block;font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;margin-bottom:2px}
 .kjm-yomibox.on .lbl{color:var(--accent)}
 .kjm-yomibox.kun .lbl{color:var(--green)}
-.kjm-yomibox .val{font-size:15.5px;font-weight:600;line-height:1.5}
-.kjm-sec{font-size:11.5px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--text2);margin:16px 0 4px}
+.kjm-yomibox.on{background:var(--accent-soft);border-color:rgba(62,79,168,.3)}
+.kjm-yomibox.kun{background:var(--green-soft);border-color:rgba(76,128,85,.3)}
+.kjm-yomibox .val{font-size:15.5px;font-weight:700;line-height:1.5}
+.kjm-sec{display:flex;align-items:center;gap:10px;font-size:11.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--text2);margin:18px 0 6px}
+.kjm-sec::after{content:"";flex:1;height:1px;background:var(--line)}
 .kjm-ju{list-style:none}
-.kjm-ju li{display:flex;flex-wrap:wrap;gap:2px 8px;padding:7px 0;border-bottom:1px dashed var(--line);font-size:14.5px;line-height:1.6}
+.kjm-ju li{display:flex;flex-wrap:wrap;gap:2px 8px;padding:8px 0;border-bottom:1px dashed var(--line);font-size:14.5px;line-height:1.6}
 .kjm-ju li:last-child{border-bottom:none}
-.kjm-ju .wr{font-weight:600}
+.kjm-ju .wr{font-weight:700}
 .kjm-ju .m{color:var(--green)}
-.kjm-ex{background:var(--bg2);border:1px solid var(--line);border-radius:10px;padding:10px 12px;font-size:14.5px;line-height:1.7}
+.kjm-ex{background:var(--bg2);border:1px solid var(--line);border-radius:12px;padding:12px 14px;font-size:14.5px;line-height:1.7}
 .kjm-ex .jp{display:block}
 .kjm-ex .id{display:block;color:var(--text2);font-size:13px}
-.gp-body .rumus{background:var(--accent-soft,#eef2ff);border:1px dashed var(--accent,#6366f1);padding:9px 12px;border-radius:10px;font-size:13.5px;line-height:1.7;margin-bottom:10px}
-.pager{display:flex;gap:10px;margin-top:26px}
-.pager .btn{flex:1;justify-content:center;padding:11px}
+.kj-dialog-body::-webkit-scrollbar{width:8px}
+.kj-dialog-body::-webkit-scrollbar-thumb{background:var(--line);border-radius:8px}
+
+.pager{display:flex;gap:12px;margin-top:28px}
+.pager .btn{flex:1;justify-content:center;padding:12px;border-radius:12px}
 .pager .btn small{color:var(--text2);font-weight:400}
-.footer{margin-top:44px;padding-top:16px;border-top:1px solid var(--line);font-size:12.5px;color:var(--text2);text-align:center;line-height:1.8}
+.footer{margin-top:48px;padding-top:18px;border-top:1px solid var(--line);font-size:12.5px;color:var(--text2);text-align:center;line-height:1.8}
+.footer::before{content:"❀";display:block;font-size:15px;color:var(--sakura);margin-bottom:8px}
+
 @media (max-width:520px){
-  .wrap{padding:18px 14px 48px}
+  .wrap{padding:16px 14px 52px}
+  .hero{padding:26px 20px 24px;border-radius:18px}
+  .hero::after{font-size:118px;bottom:-32px;right:6px}
+  .stats{gap:8px}
+  .stat{padding:8px 12px}
   .gp-head{flex-wrap:wrap}
   .gp-head .arti{order:3}
   .switch{margin-left:0}
-  .kj-grid{grid-template-columns:repeat(auto-fill,minmax(118px,1fr));gap:9px}
-  .kj-front .kj-ch{font-size:34px}
+  .tabs{width:100%;display:flex}
+  .tab{flex:1;text-align:center;padding:9px 8px}
+  .kj-grid{grid-template-columns:repeat(auto-fill,minmax(118px,1fr));gap:10px}
+  .kj-front .kj-ch{font-size:36px}
   .kjm-yomi{grid-template-columns:1fr}
-  .kjm-ch{font-size:44px;padding:12px 15px}
+  .kjm-ch{font-size:42px;padding:13px 16px}
   .kj-dialog-body{padding:18px 16px 16px}
 }
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{
+    animation-duration:.01ms !important;
+    animation-delay:0ms !important;
+    animation-iteration-count:1 !important;
+    transition-duration:.01ms !important;
+    transition-delay:0ms !important;
+  }
+}
+
+ruby{ruby-align:center}
+ruby rt{font-size:.58em;color:var(--rt);font-weight:600;line-height:1;letter-spacing:0;user-select:none}
+.k ruby rt,.w ruby rt{color:var(--rt)}
 </style>
 </head>
 <body>
@@ -1025,17 +1189,66 @@ const $app = document.getElementById('app');
 const DONE_KEY = 'n4-done';
 const HAF_KEY = 'n4-hafalan';
 let state = { view: 'home', hari: 1, tab: 'bunpou', q: '', kjQ: '' };
-let done = new Set(JSON.parse(localStorage.getItem(DONE_KEY) || '[]'));
-let hafalan = localStorage.getItem(HAF_KEY) === '1';
+
+/* ===== Akses localStorage aman (tahan JSON rusak / SecurityError / penyimpanan nonaktif) ===== */
+function lsGet(key) {
+  try { return localStorage.getItem(key); } catch (e) { return null; }
+}
+function lsSet(key, val) {
+  try { localStorage.setItem(key, val); return true; } catch (e) { return false; }
+}
+function lsDel(key) {
+  try { localStorage.removeItem(key); } catch (e) { /* abaikan */ }
+}
+function loadDone() {
+  const raw = lsGet(DONE_KEY);
+  if (raw == null) return new Set();
+  try {
+    const arr = JSON.parse(raw);
+    if (!Array.isArray(arr)) throw new Error('format bukan array');
+    return new Set(arr.filter(x => Number.isInteger(x)));
+  } catch (e) {
+    lsDel(DONE_KEY); // data rusak: hapus supaya tidak mengganggu berikutnya
+    return new Set();
+  }
+}
+let done = loadDone();
+let hafalan = lsGet(HAF_KEY) === '1';
 let openSet = new Set();
 let kjFlip = new Set();
 
 const bunpouOf = h => BUNPOU.find(b => b.hari === h);
 const kotobaOf = h => KOTOBA.find(k => k.hari === h);
 const esc = s => String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
-const saveDone = () => localStorage.setItem(DONE_KEY, JSON.stringify([...done]));
+const saveDone = () => { lsSet(DONE_KEY, JSON.stringify([...done])); };
 
 const TOTAL_POINTS = BUNPOU.reduce((a, b) => a + b.points.length, 0);
+/* ===== Furigana engine (otomatis, hanya kanji di atas level N5) ===== */
+const N5SET = new Set(KANJI.map(k => k.kanji));
+const FURI = {
+"日本料理":"にほんりょうり","電話番号":"でんわばんごう",
+"会社員":"かいしゃいん","富士山":"ふじさん","会議室":"かいぎしつ","郵便局":"ゆうびんきょく","喫茶店":"きっさてん","飛行機":"ひこうき","北海道":"ほっかいどう","図書館":"としょかん","交差点":"こうさてん",
+"社員":"しゃいん","辞書":"じしょ","食堂":"しょくどう","手洗":"てあら","毎朝":"まいあさ","勉強":"べんきょう","奈良":"なら","銀行":"ぎんこう","昼休":"ひるやす","京都":"きょうと","大阪":"おおさか","家族":"かぞく","一緒":"いっしょ","部屋":"へや","東京":"とうきょう","生活":"せいかつ","果物":"くだもの","音楽":"おんがく","公園":"こうえん","写真":"しゃしん","本屋":"ほんや","手紙":"てがみ","切手":"きって","五枚":"ごまい","二回":"にかい","映画":"えいが","旅行":"りょこう","野球":"やきゅう","沖縄":"おきなわ","神戸":"こうべ","料理":"りょうり","荷物":"にもつ","結婚":"けっこん","独身":"どくしん","仕事":"しごと","漢字":"かんじ","趣味":"しゅみ","食事":"しょくじ","元気":"げんき","医者":"いしゃ","物価":"ぶっか","約束":"やくそく","用事":"ようじ","佐藤":"さとう","住所":"じゅうしょ","山田":"やまだ","洗濯":"せんたく","夏休":"なつやす","手伝":"てつだ","土産":"みやげ","靴売":"くつう","宿題":"しゅくだい","練習":"れんしゅう","都合":"つごう","故障":"こしょう","準備":"じゅんび","億円":"おくえん","転勤":"てんきん","全部":"ぜんぶ","授業":"じゅぎょう","毎晚":"まいばん","一度":"いちど","教室":"きょうしつ","神社":"じんじゃ",
+"傘":"かさ","起":"お","帰":"かえ","歩":"ある","昼":"ひる","桜":"さくら","広":"ひろ","暇":"ひま","町":"まち","楽":"たの","好":"す","嫌":"きら","歌":"うた","頭":"あたま","痛":"いた","猫":"ねこ","机":"つくえ","近":"ちか","隣":"となり","箱":"はこ","枚":"まい","台":"だい","冊":"さつ","回":"かい","暑":"あつ","船":"ふね","速":"はや","物":"もの","待":"ま","降":"ふ","持":"も","願":"ねが","撮":"と","吸":"す","知":"し","住":"す","朝":"あさ","浴":"あ","静":"しず","明":"あか","終":"お","泳":"およ","番":"ばん","乗":"の","薬":"くすり","返":"かえ","寝":"ね","洗":"あら","馬":"うま","寒":"さむ","思":"おも","作":"つく","青":"あお","着":"き","王":"おう","描":"か","絵":"え","借":"か","要":"い","遊":"あそ","押":"お","釣":"つ","曲":"ま","教":"おし","送":"おく","働":"はたら","夏":"なつ","春":"はる","欲":"ほ","弾":"ひ","場":"ば","使":"つか","方":"かた","熱":"ねつ","祈":"いの","悪":"わる","引":"ひ","越":"こ","晚":"ばん","始":"はじ","忙":"いそが","弟":"おとうと","次":"つぎ","登":"のぼ","靴":"くつ","寺":"てら","赤":"あか","島":"しま","冬":"ふゆ","消":"け","迎":"むか","秋":"あき","緑":"みどり","切":"き"
+};
+const FURI_KEYS = Object.keys(FURI).sort((a,b)=>b.length-a.length);
+const FURI_MAX = FURI_KEYS.reduce((m,k)=>Math.max(m,k.length),1);
+function rb(s){
+  s = String(s == null ? '' : s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  return s.replace(/[\u4e00-\u9fff\u3005]+/g, function(run){
+    if (![...run].some(c => !N5SET.has(c))) return run; // semua kanji N5 -> tanpa furigana
+    let out = '', i = 0;
+    while (i < run.length) {
+      let matched = false;
+      for (let L = Math.min(FURI_MAX, run.length - i); L >= 1; L--) {
+        const sub = run.substr(i, L);
+        if (FURI[sub]) { out += '<ruby>' + sub + '<rt>' + FURI[sub] + '</rt></ruby>'; i += L; matched = true; break; }
+      }
+      if (!matched) { out += run[i]; i++; }
+    }
+    return out;
+  });
+}
 const TOTAL_WORDS = KOTOBA.reduce((a, k) => a + k.words.length, 0);
 
 function render() {
@@ -1053,11 +1266,12 @@ function cardHTML(b) {
     + '<span class="hari">Hari ' + b.hari + ' · Bab ' + b.bab + '</span>'
     + '<h3>' + esc(b.title) + '</h3>'
     + '<span class="kt b"><span class="tag">Bunpou</span>' + b.points.length + ' pola kalimat</span>'
-    + (kt ? '<span class="kt"><span class="tag">Kotoba</span>' + esc(kt.theme) + ' · ' + kt.words.length + ' kata</span>'
+    + (kt ? '<span class="kt"><span class="tag">Kotoba</span>' + rb(kt.theme) + ' · ' + kt.words.length + ' kata</span>'
           : '<span class="kt"><span class="tag">Kotoba</span>—</span>')
     + '</button>';
 }
 function matches(b, q) {
+  q = (q || '').trim();
   if (!q) return true;
   const kt = kotobaOf(b.hari);
   let hay = 'hari ' + b.hari + ' ' + b.title + ' ' + b.points.map(p => p.p + ' ' + p.arti).join(' ');
@@ -1087,7 +1301,7 @@ function renderHome() {
     + '</div>'
     + '<div class="searchbar">'
     + '<svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>'
-    + '<input id="q" type="text" placeholder="Cari bab, pola kalimat, atau kosakata… (misal: 〜ておく, keigo, perasaan)" value="' + esc(state.q) + '">'
+    + '<input id="q" type="text" placeholder="Cari bab, pola kalimat, atau kosakata… (misal: 〜てください, makan, pergi)" value="' + esc(state.q) + '" aria-label="Cari bab, pola kalimat, atau kosakata">'
     + '</div>'
     + '<div id="gridwrap">' + gridHTML() + '</div>'
     + footerHTML();
@@ -1115,15 +1329,18 @@ function footerHTML() {
   return '<div class="footer">Sumber materi: みんなの日本語 初級 II (Minna no Nihongo II) · Bab 26–50 — Bunpou & Kotoba JLPT N4<br>Dibuat sebagai media belajar interaktif · progres tersimpan otomatis di perangkat ini</div>';
 }
 function gpHTML(pt, i) {
-  const open = openSet.has(i) ? ' open' : '';
+  const isOpen = openSet.has(i);
+  const open = isOpen ? ' open' : '';
+  const pid = 'gp-panel-h' + state.hari + '-' + i;
+  const bid = 'gp-btn-h' + state.hari + '-' + i;
   return '<div class="gp' + open + '" data-i="' + i + '">'
-    + '<button class="gp-head"><span class="pat">' + esc(pt.p) + '</span>'
+    + '<button class="gp-head" id="' + bid + '" aria-expanded="' + isOpen + '" aria-controls="' + pid + '"><span class="pat">' + rb(pt.p) + '</span>'
     + '<span class="arti">' + esc(pt.arti) + '</span><span class="chev">▶</span></button>'
-    + '<div class="gp-body">'
-    + (pt.rumus ? '<div class="rumus">🧩 <b>Rumus:</b> ' + esc(pt.rumus) + '</div>' : '')
-    + (pt.note ? '<div class="note">💡 ' + esc(pt.note) + '</div>' : '')
-    + (pt.warn ? '<div class="warn">⚠️ ' + esc(pt.warn) + '</div>' : '')
-    + (pt.ex && pt.ex.length ? '<ul class="exs">' + pt.ex.map(e => '<li>' + esc(e) + '</li>').join('') + '</ul>' : '')
+    + '<div class="gp-body" id="' + pid + '" role="region" aria-labelledby="' + bid + '">'
+    + (pt.rumus ? '<div class="rumus">🧩 <b>Rumus:</b> ' + rb(pt.rumus) + '</div>' : '')
+    + (pt.note ? '<div class="note">💡 ' + rb(pt.note) + '</div>' : '')
+    + (pt.warn ? '<div class="warn">⚠️ ' + rb(pt.warn) + '</div>' : '')
+    + (pt.ex && pt.ex.length ? '<ul class="exs">' + pt.ex.map(e => '<li>' + rb(e) + '</li>').join('') + '</ul>' : '')
     + '</div></div>';
 }
 function wordHTML(w) {
@@ -1132,7 +1349,7 @@ function wordHTML(w) {
     + '<div class="w-line"><span class="w">' + esc(w.w) + '</span>'
     + (w.k ? '<span class="k">' + esc(w.k) + '</span>' : '') + '</div>'
     + '<div class="m">' + esc(w.m) + '</div>'
-    + (w.ex ? '<div class="ex">' + esc(w.ex) + '</div>' : '')
+    + (w.ex ? '<div class="ex">' + rb(w.ex) + '</div>' : '')
     + '</div>';
 }
 function bunpouTabHTML(b) {
@@ -1148,9 +1365,9 @@ function kotobaTabHTML(h) {
     return '<div class="kt-none"><b>Tidak ada kosakata untuk Hari ' + h + '</b>'
       + 'Materi kotoba untuk hari ini belum tersedia — gunakan tab Bunpou di atas.</div>';
   }
-  return '<div class="kt-head"><span class="theme">' + esc(kt.theme) + '</span>'
+  return '<div class="kt-head"><span class="theme">' + rb(kt.theme) + '</span>'
     + '<span class="sub">' + esc(kt.sub || '') + '</span>'
-    + '<button class="switch' + (hafalan ? ' on' : '') + '" id="haf"><span>Mode hafalan</span><span class="dot"></span></button>'
+    + '<button class="switch' + (hafalan ? ' on' : '') + '" id="haf" aria-pressed="' + hafalan + '"><span>Mode hafalan</span><span class="dot" aria-hidden="true"></span></button>'
     + '</div>'
     + (hafalan ? '<div class="hint">Arti disembunyikan — ketuk kartu untuk melihat jawabannya.</div>' : '')
     + '<div class="words">' + kt.words.map(wordHTML).join('') + '</div>';
@@ -1167,11 +1384,11 @@ function renderBab() {
     + '<button class="btn' + (isDone ? ' done-on' : '') + '" id="toggledone">' + (isDone ? '✓ Selesai dipelajari' : '○ Tandai selesai') + '</button>'
     + '</div>'
     + '<div class="bab-head"><div class="hari">Hari ' + b.hari + ' / ' + BUNPOU.length + ' · Bab ' + b.bab + '</div><h2>' + esc(b.title) + '</h2></div>'
-    + '<div class="tabs">'
-    + '<button class="tab' + (state.tab === 'bunpou' ? ' on' : '') + '" data-tab="bunpou">文法 Bunpou</button>'
-    + '<button class="tab' + (state.tab === 'kotoba' ? ' on' : '') + '" data-tab="kotoba">言葉 Kotoba</button>'
+    + '<div class="tabs" role="tablist" aria-label="Materi hari ' + b.hari + '">'
+    + '<button class="tab' + (state.tab === 'bunpou' ? ' on' : '') + '" data-tab="bunpou" role="tab" id="tab-bunpou" aria-selected="' + (state.tab === 'bunpou') + '" aria-controls="tabbody"' + (state.tab === 'bunpou' ? '' : ' tabindex="-1"') + '>文法 Bunpou</button>'
+    + '<button class="tab' + (state.tab === 'kotoba' ? ' on' : '') + '" data-tab="kotoba" role="tab" id="tab-kotoba" aria-selected="' + (state.tab === 'kotoba') + '" aria-controls="tabbody"' + (state.tab === 'kotoba' ? '' : ' tabindex="-1"') + '>言葉 Kotoba</button>'
     + '</div>'
-    + '<div id="tabbody">' + (state.tab === 'bunpou' ? bunpouTabHTML(b) : kotobaTabHTML(b.hari)) + '</div>'
+    + '<div id="tabbody" role="tabpanel" aria-labelledby="tab-' + state.tab + '">' + (state.tab === 'bunpou' ? bunpouTabHTML(b) : kotobaTabHTML(b.hari)) + '</div>'
     + '<div class="pager">'
     + (prev ? '<button class="btn" id="prev">← Hari ' + prev.hari + ' <small>· sebelumnya</small></button>' : '')
     + (next ? '<button class="btn" id="next">Hari ' + next.hari + ' <small>· berikutnya</small> →</button>' : '')
@@ -1182,10 +1399,22 @@ function renderBab() {
     if (done.has(state.hari)) done.delete(state.hari); else done.add(state.hari);
     saveDone(); renderBab();
   };
-  $app.querySelectorAll('.tab').forEach(t => t.onclick = () => {
-    state.tab = t.dataset.tab;
-    if (state.tab === 'bunpou') openSet = new Set([0]);
-    renderBab();
+  const tabs = Array.from($app.querySelectorAll('.tab'));
+  tabs.forEach((t, idx) => {
+    t.onclick = () => {
+      state.tab = t.dataset.tab;
+      if (state.tab === 'bunpou') openSet = new Set([0]);
+      renderBab();
+      const cur = $app.querySelector('.tab.on');
+      if (cur) cur.focus();
+    };
+    t.onkeydown = e => {
+      if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+      e.preventDefault();
+      const dir = e.key === 'ArrowRight' ? 1 : -1;
+      const next = tabs[(idx + dir + tabs.length) % tabs.length];
+      if (next) next.click();
+    };
   });
   if (document.getElementById('prev')) document.getElementById('prev').onclick = () => { state.hari--; state.tab = 'bunpou'; openSet = new Set([0]); render(); };
   if (document.getElementById('next')) document.getElementById('next').onclick = () => { state.hari++; state.tab = 'bunpou'; openSet = new Set([0]); render(); };
@@ -1195,23 +1424,33 @@ function bindTabBody() {
   $app.querySelectorAll('.gp-head').forEach(hd => hd.onclick = () => {
     const gp = hd.parentElement;
     const i = +gp.dataset.i;
-    if (openSet.has(i)) { openSet.delete(i); gp.classList.remove('open'); }
-    else { openSet.add(i); gp.classList.add('open'); }
+    const nowOpen = !openSet.has(i);
+    if (nowOpen) openSet.add(i); else openSet.delete(i);
+    gp.classList.toggle('open', nowOpen);
+    hd.setAttribute('aria-expanded', String(nowOpen));
   });
   const oa = document.getElementById('openall');
   if (oa) oa.onclick = () => {
     openSet = new Set(bunpouOf(state.hari).points.map((_, i) => i));
-    $app.querySelectorAll('.gp').forEach(g => g.classList.add('open'));
+    $app.querySelectorAll('.gp').forEach(g => {
+      g.classList.add('open');
+      const hd = g.querySelector('.gp-head');
+      if (hd) hd.setAttribute('aria-expanded', 'true');
+    });
   };
   const ca = document.getElementById('closeall');
   if (ca) ca.onclick = () => {
     openSet = new Set();
-    $app.querySelectorAll('.gp').forEach(g => g.classList.remove('open'));
+    $app.querySelectorAll('.gp').forEach(g => {
+      g.classList.remove('open');
+      const hd = g.querySelector('.gp-head');
+      if (hd) hd.setAttribute('aria-expanded', 'false');
+    });
   };
   const haf = document.getElementById('haf');
   if (haf) haf.onclick = () => {
     hafalan = !hafalan;
-    localStorage.setItem(HAF_KEY, hafalan ? '1' : '0');
+    lsSet(HAF_KEY, hafalan ? '1' : '0');
     renderBab();
   };
   $app.querySelectorAll('.word.veiled').forEach(w => w.onclick = () => w.classList.toggle('shown'));
@@ -1219,19 +1458,20 @@ function bindTabBody() {
 
 /* ============ KANJI FLASHCARD ============ */
 function kjMatches(k, q) {
+  q = (q || '').trim();
   if (!q) return true;
   const hay = k.no + ' ' + k.kanji + ' ' + k.baca + ' ' + k.kata.join(' ') + ' ' + (k.jp || '') + ' ' + (k.id || '');
   return hay.toLowerCase().includes(q.toLowerCase());
 }
 function kjCardHTML(k) {
   const flip = kjFlip.has(k.no) ? ' flip' : '';
-  return '<div class="kj-card' + flip + '" data-no="' + k.no + '">'
+  return '<div class="kj-card' + flip + '" data-no="' + k.no + '" role="button" tabindex="0" aria-label="Detail kanji ' + esc(k.kanji) + ' (kartu nomor ' + k.no + ')">'
     + '<div class="kj-inner">'
     + '<div class="kj-face kj-front"><span class="kj-no">#' + k.no + '</span><span class="kj-ch">' + esc(k.kanji) + '</span><span class="kj-tap">ketuk untuk detail</span></div>'
     + '<div class="kj-face kj-back">'
     + '<div class="kj-ch2">' + esc(k.kanji) + '<span class="kj-baca">' + esc(k.baca) + '</span></div>'
     + '<ul class="kj-kata">' + k.kata.map(x => '<li>' + esc(x) + '</li>').join('') + '</ul>'
-    + (k.jp ? '<div class="kj-kalimat"><span class="jp">' + esc(k.jp) + '</span>' + esc(k.id) + '</div>' : '')
+    + (k.jp ? '<div class="kj-kalimat"><span class="jp">' + rb(k.jp) + '</span>' + esc(k.id) + '</div>' : '')
     + '</div></div></div>';
 }
 function kjGridHTML() {
@@ -1240,7 +1480,14 @@ function kjGridHTML() {
   return '<div class="kj-grid">' + list.map(kjCardHTML).join('') + '</div>';
 }
 function bindKjCards() {
-  $app.querySelectorAll('.kj-card').forEach(c => c.onclick = () => openKjModal(+c.dataset.no));
+  $app.querySelectorAll('.kj-card').forEach(c => {
+    c.onclick = () => openKjModal(+c.dataset.no, c);
+    c.onkeydown = e => {
+      if (e.key !== 'Enter' && e.key !== ' ') return;
+      e.preventDefault();
+      openKjModal(+c.dataset.no, c);
+    };
+  });
 }
 
 /* ---- pop up detail kanji ---- */
@@ -1260,25 +1507,35 @@ function kjJuItemHTML(s) {
   const m = i >= 0 ? s.slice(i + 1).trim() : '';
   return '<li><span class="wr">' + esc(head) + '</span>' + (m ? '<span class="m">= ' + esc(m) + '</span>' : '') + '</li>';
 }
-function closeKjModal() {
-  const el = document.getElementById('kjmodal');
-  if (el) el.remove();
-  document.body.style.overflow = '';
+let kjTrigger = null;
+function kjFocusables(wrap) {
+  return Array.from(wrap.querySelectorAll('button, a[href], input, select, textarea, [tabindex]:not([tabindex="-1"])'))
+    .filter(el => !el.disabled && el.getClientRects().length > 0);
 }
-function openKjModal(no) {
-  closeKjModal();
+function closeKjModal(silent) {
+  const el = document.getElementById('kjmodal');
+  if (!el) return;
+  el.remove();
+  document.body.style.overflow = '';
+  $app.removeAttribute('inert');
+  if (!silent && kjTrigger && document.contains(kjTrigger)) kjTrigger.focus();
+  kjTrigger = null;
+}
+function openKjModal(no, trigger) {
+  closeKjModal(true);
   const k = KANJI.find(x => x.no === no);
   if (!k) return;
+  kjTrigger = trigger || (document.activeElement && document.activeElement !== document.body ? document.activeElement : null);
   const ex = KJEX[k.kanji] || {};
   const wrap = document.createElement('div');
   wrap.className = 'kj-modal';
   wrap.id = 'kjmodal';
   wrap.innerHTML = '<div class="kj-backdrop"></div>'
-    + '<div class="kj-dialog" role="dialog" aria-modal="true" aria-label="Detail kanji ' + esc(k.kanji) + '">'
+    + '<div class="kj-dialog" role="dialog" aria-modal="true" aria-labelledby="kjm-kanji kjm-title">'
     + '<button class="kj-close" aria-label="Tutup">✕</button>'
     + '<div class="kj-dialog-body">'
-    + '<div class="kjm-head"><span class="kjm-ch">' + esc(k.kanji) + '</span>'
-    + '<div class="kjm-headinfo"><span class="kjm-no">#' + k.no + ' · Kanji N4</span>'
+    + '<div class="kjm-head"><span class="kjm-ch" id="kjm-kanji">' + esc(k.kanji) + '</span>'
+    + '<div class="kjm-headinfo"><span class="kjm-no" id="kjm-title">#' + k.no + ' · Kanji N4</span>'
     + '<span class="kjm-baca">' + esc(k.baca) + '</span></div></div>'
     + '<div class="kjm-yomi">'
     + '<div class="kjm-yomibox on"><span class="lbl">音読み · Onyomi</span><span class="val">' + esc(ex.on || '—') + '</span></div>'
@@ -1286,12 +1543,23 @@ function openKjModal(no) {
     + '</div>'
     + '<div class="kjm-sec">熟語 · Jukugo penting yang sering keluar</div>'
     + '<ul class="kjm-ju">' + kjJuList(k).map(kjJuItemHTML).join('') + '</ul>'
-    + (k.jp ? '<div class="kjm-sec">例文 · Contoh kalimat</div><div class="kjm-ex"><span class="jp">' + esc(k.jp) + '</span><span class="id">' + esc(k.id) + '</span></div>' : '')
+    + (k.jp ? '<div class="kjm-sec">例文 · Contoh kalimat</div><div class="kjm-ex"><span class="jp">' + rb(k.jp) + '</span><span class="id">' + esc(k.id) + '</span></div>' : '')
     + '</div></div>';
   document.body.appendChild(wrap);
   document.body.style.overflow = 'hidden';
-  wrap.querySelector('.kj-backdrop').onclick = closeKjModal;
-  wrap.querySelector('.kj-close').onclick = closeKjModal;
+  $app.setAttribute('inert', '');
+  wrap.querySelector('.kj-backdrop').onclick = () => closeKjModal();
+  const kjCloseBtn = wrap.querySelector('.kj-close');
+  kjCloseBtn.onclick = () => closeKjModal();
+  wrap.addEventListener('keydown', e => {
+    if (e.key !== 'Tab') return;
+    const f = kjFocusables(wrap);
+    if (!f.length) return;
+    const first = f[0], last = f[f.length - 1];
+    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+  });
+  kjCloseBtn.focus();
 }
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeKjModal(); });
 function renderKanji() {
@@ -1306,7 +1574,7 @@ function renderKanji() {
     + '<div class="kj-hint">Diambil dari PDF Kanji Flashcard N4 &middot; ketuk kartu untuk membuka pop up detail: onyomi, kunyomi, jukugo penting, dan contoh kalimat.</div>'
     + '<div class="searchbar">'
     + '<svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>'
-    + '<input id="kjq" type="text" placeholder="Cari kanji, cara baca, atau arti…" value="' + esc(state.kjQ) + '">'
+    + '<input id="kjq" type="text" placeholder="Cari kanji, cara baca, atau arti…" value="' + esc(state.kjQ) + '" aria-label="Cari kanji, cara baca, atau arti">'
     + '</div>'
     + '<div id="kjgridwrap">' + kjGridHTML() + '</div>'
     + footerHTML();
